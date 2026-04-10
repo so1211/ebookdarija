@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARIJA — Le Guide Complet du Dialecte Marocain</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bordeaux:   #6B1A1A;
+    --bordeaux2:  #8B2020;
+    --terracotta: #C0622F;
+    --or:         #C8902A;
+    --or-pale:    #E8C97A;
+    --or-light:   #F5E2A8;
+    --sable:      #F5E6C8;
+    --creme:      #FBF5E6;
+    --brun:       #3D2008;
+    --brun-med:   #7A4A1E;
+    --encre:      #1C1208;
+    --gris:       #9E8E7E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--encre);
+    color: var(--creme);
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── ORNAMENT SVG patterns ── */
+  .zellige-bg {
+    background-image:
+      repeating-linear-gradient(45deg, rgba(200,144,42,0.04) 0, rgba(200,144,42,0.04) 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(-45deg, rgba(200,144,42,0.04) 0, rgba(200,144,42,0.04) 1px, transparent 0, transparent 50%);
+    background-size: 20px 20px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px 80px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 20% 20%, #4A1A08 0%, var(--encre) 60%),
+                radial-gradient(ellipse at 80% 80%, #3D1505 0%, transparent 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(200,144,42,0.035) 0, rgba(200,144,42,0.035) 1px, transparent 0, transparent 28px),
+      repeating-linear-gradient(-45deg, rgba(200,144,42,0.035) 0, rgba(200,144,42,0.035) 1px, transparent 0, transparent 28px);
+    pointer-events: none;
+  }
+
+  /* Decorative circles */
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,144,42,0.12);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-circle-2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,144,42,0.18);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-circle-3 {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,144,42,0.25);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-top-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--or);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-arabic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-style: italic;
+    color: var(--or-pale);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(52px, 10vw, 110px);
+    font-weight: 700;
+    color: var(--or-pale);
+    letter-spacing: 8px;
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 80px rgba(200,144,42,0.3);
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.5s;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3vw, 24px);
+    font-style: italic;
+    color: var(--or);
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .ornament-line {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 auto 50px;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+  .ornament-line span {
+    display: block;
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--or));
+  }
+  .ornament-line span:last-child {
+    background: linear-gradient(to left, transparent, var(--or));
+  }
+  .ornament-line .diamond {
+    width: 8px; height: 8px;
+    background: var(--or);
+    transform: rotate(45deg);
+  }
+  .ornament-line .dot {
+    width: 4px; height: 4px;
+    background: var(--or-pale);
+    border-radius: 50%;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+  }
+  .hero-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--brun);
+    background: var(--or-pale);
+    padding: 6px 16px;
+    text-transform: uppercase;
+  }
+
+  .hero-cta {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.1s;
+  }
+
+  /* ── ORNAMENT DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 40px;
+    margin: 0 auto;
+    max-width: 700px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--or-pale), transparent);
+  }
+  .divider-star {
+    width: 14px; height: 14px;
+    background: var(--or);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .divider-dot {
+    width: 6px; height: 6px;
+    background: var(--or-pale);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--or);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    color: var(--or-pale);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--or);
+  }
+
+  .section-intro {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--sable);
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 50px;
+    opacity: 0.9;
+  }
+
+  /* ── PROBLEM BAND ── */
+  .problem-band {
+    background: linear-gradient(135deg, #2A0E04 0%, #1C1208 50%, #2A0E04 100%);
+    border-top: 1px solid rgba(200,144,42,0.2);
+    border-bottom: 1px solid rgba(200,144,42,0.2);
+    padding: 60px 20px;
+  }
+  .problem-band section { padding: 0; }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 40px;
+  }
+  .problem-item {
+    background: rgba(200,144,42,0.06);
+    border: 1px solid rgba(200,144,42,0.12);
+    padding: 28px 24px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .problem-item:hover { background: rgba(200,144,42,0.1); }
+  .problem-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--bordeaux2);
+  }
+  .problem-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .problem-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--sable);
+    line-height: 1.5;
+  }
+
+  /* ── FEATURES / SOMMAIRE ── */
+  .features-section {
+    background: var(--encre);
+  }
+
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 3px;
+    margin-top: 40px;
+  }
+
+  .level-card {
+    position: relative;
+    padding: 36px 28px;
+    background: linear-gradient(160deg, rgba(61,32,8,0.5) 0%, rgba(28,18,8,0.8) 100%);
+    border: 1px solid rgba(200,144,42,0.15);
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .level-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200,144,42,0.4);
+  }
+  .level-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--or);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .level-card:hover::after { transform: scaleX(1); }
+
+  .level-number {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--or);
+    margin-bottom: 8px;
+  }
+  .level-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--or-pale);
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(200,144,42,0.2);
+  }
+  .level-items {
+    list-style: none;
+  }
+  .level-items li {
+    font-size: 13.5px;
+    color: var(--sable);
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .level-items li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 12px;
+    width: 6px; height: 1px;
+    background: var(--or);
+  }
+
+  /* ── WHAT YOU GET ── */
+  .chiffres-band {
+    background: linear-gradient(135deg, var(--bordeaux) 0%, #4A1010 50%, var(--bordeaux) 100%);
+    padding: 70px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .chiffres-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 0, transparent 40px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 0, transparent 40px);
+  }
+  .chiffres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2px;
+    max-width: 900px;
+    margin: 40px auto 0;
+  }
+  .chiffre-item {
+    text-align: center;
+    padding: 36px 20px;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(232,201,122,0.2);
+    transition: background 0.3s;
+  }
+  .chiffre-item:hover { background: rgba(0,0,0,0.4); }
+  .chiffre-num {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--or-pale);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .chiffre-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(245,230,200,0.7);
+    text-transform: uppercase;
+  }
+
+  /* ── EXTRACT ── */
+  .extract-section {
+    background: var(--encre);
+  }
+
+  .extract-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 14px;
+  }
+  .extract-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    background: var(--bordeaux);
+    color: var(--or-pale);
+    text-align: left;
+    border-bottom: 2px solid var(--or);
+  }
+  .extract-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(200,144,42,0.1);
+    color: var(--sable);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .extract-table tr:nth-child(even) td {
+    background: rgba(200,144,42,0.04);
+  }
+  .extract-table tr:hover td {
+    background: rgba(200,144,42,0.08);
+  }
+  .td-fr { color: var(--creme); font-weight: 700; }
+  .td-ph { color: var(--or); font-style: italic; }
+  .td-mf { color: var(--or-pale); font-size: 12px; }
+
+  /* ── TESTIMONIALS ── */
+  .testi-section {
+    background: linear-gradient(180deg, var(--encre) 0%, #2A0E04 100%);
+  }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 3px;
+    margin-top: 40px;
+  }
+  .testi-card {
+    padding: 32px 28px;
+    background: rgba(61,32,8,0.4);
+    border: 1px solid rgba(200,144,42,0.15);
+    position: relative;
+  }
+  .testi-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: var(--or);
+    opacity: 0.3;
+    position: absolute;
+    top: 10px; left: 20px;
+    line-height: 1;
+  }
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--sable);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .testi-stars {
+    color: var(--or);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .testi-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--or-pale);
+  }
+
+  /* ── PRICING ── */
+  .pricing-section {
+    background: var(--encre);
+    text-align: center;
+    padding: 100px 20px;
+  }
+
+  .price-box {
+    max-width: 500px;
+    margin: 50px auto 0;
+    position: relative;
+  }
+
+  /* Decorative corner ornaments */
+  .price-box::before, .price-box::after,
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+  }
+  .corner-tl {
+    top: -1px; left: -1px;
+    border-top: 2px solid var(--or);
+    border-left: 2px solid var(--or);
+  }
+  .corner-tr {
+    top: -1px; right: -1px;
+    border-top: 2px solid var(--or);
+    border-right: 2px solid var(--or);
+  }
+  .corner-bl {
+    bottom: -1px; left: -1px;
+    border-bottom: 2px solid var(--or);
+    border-left: 2px solid var(--or);
+  }
+  .corner-br {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid var(--or);
+    border-right: 2px solid var(--or);
+  }
+
+  .price-inner {
+    background: linear-gradient(160deg, rgba(61,32,8,0.7) 0%, rgba(28,18,8,0.9) 100%);
+    border: 1px solid rgba(200,144,42,0.25);
+    padding: 50px 40px 44px;
+  }
+
+  .price-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--or);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .price-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--or-pale);
+    margin-bottom: 30px;
+  }
+  .price-includes {
+    list-style: none;
+    margin-bottom: 36px;
+    text-align: left;
+  }
+  .price-includes li {
+    font-size: 14px;
+    color: var(--sable);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(200,144,42,0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .price-includes li::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--or);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .price-amount {
+    font-family: 'Cinzel', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--or-pale);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .price-amount sup {
+    font-size: 28px;
+    vertical-align: super;
+    color: var(--or);
+  }
+  .price-note {
+    font-size: 12px;
+    color: var(--gris);
+    letter-spacing: 1px;
+    margin-bottom: 36px;
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brun);
+    background: linear-gradient(135deg, var(--or-pale) 0%, var(--or) 50%, var(--or-pale) 100%);
+    background-size: 200% 100%;
+    padding: 18px 44px;
+    text-decoration: none;
+    position: relative;
+    transition: background-position 0.4s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 30px rgba(200,144,42,0.3);
+  }
+  .cta-btn:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 50px rgba(200,144,42,0.5);
+  }
+  .cta-btn:active { transform: translateY(0); }
+
+  .cta-subtext {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--gris);
+    letter-spacing: 1px;
+  }
+
+  /* ── GUARANTEE ── */
+  .guarantee-band {
+    border-top: 1px solid rgba(200,144,42,0.15);
+    border-bottom: 1px solid rgba(200,144,42,0.15);
+    background: rgba(61,32,8,0.3);
+    padding: 50px 20px;
+  }
+  .guarantee-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .guarantee-icon {
+    font-size: 48px;
+    flex-shrink: 0;
+  }
+  .guarantee-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--or-pale);
+    margin-bottom: 8px;
+  }
+  .guarantee-text {
+    font-size: 14px;
+    color: var(--sable);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    background: var(--encre);
+    max-width: 700px;
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(200,144,42,0.12);
+    padding: 22px 0;
+  }
+  .faq-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--or-pale);
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .faq-q::after {
+    content: '+';
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    color: var(--or);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    font-size: 14px;
+    color: var(--sable);
+    line-height: 1.8;
+    display: none;
+    padding-top: 4px;
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ── FOOTER CTA ── */
+  .footer-cta {
+    background: linear-gradient(135deg, var(--bordeaux) 0%, #3D0A0A 50%, var(--bordeaux) 100%);
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(232,201,122,0.03) 0, rgba(232,201,122,0.03) 1px, transparent 0, transparent 28px),
+      repeating-linear-gradient(-45deg, rgba(232,201,122,0.03) 0, rgba(232,201,122,0.03) 1px, transparent 0, transparent 28px);
+  }
+  .footer-arabic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--or);
+    opacity: 0.6;
+    margin-bottom: 24px;
+  }
+  .footer-cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 600;
+    color: var(--or-pale);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .footer-sub {
+    font-size: 15px;
+    color: rgba(245,230,200,0.7);
+    margin-bottom: 50px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-price-inline {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    color: var(--or-pale);
+    margin-bottom: 32px;
+  }
+
+  footer {
+    background: #0D0A05;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 12px;
+    color: rgba(158,142,126,0.5);
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(200,144,42,0.08);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .hero { padding: 80px 16px 60px; }
+    .hero::after, .hero-circle-2, .hero-circle-3 { display: none; }
+    section { padding: 60px 16px; }
+    .extract-table { font-size: 12px; }
+    .extract-table th, .extract-table td { padding: 10px 10px; }
+    .price-inner { padding: 36px 24px 32px; }
+    .price-amount { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<div class="hero">
+  <div class="hero-circle-2"></div>
+  <div class="hero-circle-3"></div>
+
+  <p class="hero-top-badge">Guide Complet &nbsp;·&nbsp; PDF Téléchargeable &nbsp;·&nbsp; Livraison Instantanée</p>
+  <p class="hero-arabic">الـدارجـة المغربية</p>
+  <h1 class="hero-title">DARIJA</h1>
+  <p class="hero-subtitle">Le Dialecte Marocain — Du Débutant/e au Confirmé/e</p>
+
+  <div class="ornament-line">
+    <span></span>
+    <div class="dot"></div>
+    <div class="diamond"></div>
+    <div class="dot"></div>
+    <span></span>
+  </div>
+
+  <div class="hero-tags">
+    <span class="hero-tag">Vocabulaire</span>
+    <span class="hero-tag">Phonétique</span>
+    <span class="hero-tag">Grammaire</span>
+    <span class="hero-tag">Masculin &amp; Féminin</span>
+    <span class="hero-tag">Dialogues</span>
+    <span class="hero-tag">Proverbes</span>
+    <span class="hero-tag">Culture</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="https://buy.stripe.com/cNicN7gN69UG6hK4jmgMw02" class="cta-btn">
+      Télécharger le Guide &mdash; 9,90 €
+    </a>
+    <p style="margin-top:16px; font-size:12px; color:var(--gris); letter-spacing:1px;">
+      Paiement sécurisé &nbsp;·&nbsp; PDF livré instantanément
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════ PROBLEM ══════════════════════ -->
+<div class="problem-band">
+  <section>
+    <p class="section-label reveal">Tu te reconnais ?</p>
+    <h2 class="section-title reveal">Ce guide a été créé<br><em>exactement pour toi</em></h2>
+    <div class="problem-grid">
+      <div class="problem-item reveal">
+        <span class="problem-icon">🇲🇦</span>
+        <p class="problem-text">Tu pars au Maroc et tu veux aller au-delà du « bonjour » avec les locaux</p>
+      </div>
+      <div class="problem-item reveal">
+        <span class="problem-icon">💍</span>
+        <p class="problem-text">Ton/ta partenaire est marocain/e et tu veux enfin comprendre ce qui se dit en famille</p>
+      </div>
+      <div class="problem-item reveal">
+        <span class="problem-icon">🛍️</span>
+        <p class="problem-text">Tu veux marchander au souk, commander au restaurant et te débrouiller seul/e</p>
+      </div>
+      <div class="problem-item reveal">
+        <span class="problem-icon">🌍</span>
+        <p class="problem-text">Tu es de la diaspora et tu veux reconnecter avec la langue de tes parents</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════ CHIFFRES ══════════════════════ -->
+<div class="chiffres-band">
+  <p class="section-label reveal" style="color:var(--or-light);">Ce que contient le guide</p>
+  <h2 class="section-title reveal" style="color:white;">En chiffres</h2>
+  <div class="chiffres-grid">
+    <div class="chiffre-item reveal">
+      <div class="chiffre-num">300<span style="font-size:0.5em; color:var(--or);">+</span></div>
+      <div class="chiffre-label">Mots &amp; expressions</div>
+    </div>
+    <div class="chiffre-item reveal">
+      <div class="chiffre-num">18</div>
+      <div class="chiffre-label">Chapitres complets</div>
+    </div>
+    <div class="chiffre-item reveal">
+      <div class="chiffre-num">3</div>
+      <div class="chiffre-label">Niveaux progressifs</div>
+    </div>
+    <div class="chiffre-item reveal">
+      <div class="chiffre-num">12</div>
+      <div class="chiffre-label">Proverbes marocains</div>
+    </div>
+    <div class="chiffre-item reveal">
+      <div class="chiffre-num">M/F</div>
+      <div class="chiffre-label">Masculin &amp; Féminin</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ SOMMAIRE ══════════════════════ -->
+<section class="features-section">
+  <p class="section-label reveal">Programme</p>
+  <h2 class="section-title reveal">3 niveaux,<br><em>une progression naturelle</em></h2>
+  <p class="section-intro reveal">Chaque chapitre présente la phonétique en lettres françaises pour une prononciation correcte dès le premier jour. Pas besoin de connaître l'alphabet arabe.</p>
+
+  <div class="levels-grid">
+    <div class="level-card reveal">
+      <p class="level-number">Niveau I</p>
+      <h3 class="level-title">Débutant/e</h3>
+      <ul class="level-items">
+        <li>Sons spéciaux &amp; phonétique marocaine</li>
+        <li>Salutations masculin / féminin</li>
+        <li>Se présenter en Darija</li>
+        <li>Les chiffres et l'argent</li>
+        <li>Jours, mois et temps</li>
+        <li>La famille complète</li>
+        <li>Couleurs &amp; adjectifs accordés</li>
+      </ul>
+    </div>
+    <div class="level-card reveal">
+      <p class="level-number">Niveau II</p>
+      <h3 class="level-title">Intermédiaire</h3>
+      <ul class="level-items">
+        <li>Nourriture &amp; dialogues au restaurant</li>
+        <li>Le souk &amp; l'art du marchandage</li>
+        <li>Transports et directions</li>
+        <li>Grammaire : présent, passé, futur</li>
+        <li>La négation ma…che</li>
+        <li>L'impératif M/F (16 verbes)</li>
+        <li>30 verbes conjugués M/F</li>
+      </ul>
+    </div>
+    <div class="level-card reveal">
+      <p class="level-number">Niveau III</p>
+      <h3 class="level-title">Confirmé/e</h3>
+      <ul class="level-items">
+        <li>Expressions idiomatiques &amp; argot</li>
+        <li>Frandarija — le parler des jeunes</li>
+        <li>Culture, Ramadan &amp; fêtes</li>
+        <li>12 proverbes avec explications</li>
+        <li>Dialogues avancés (travail, santé…)</li>
+        <li>Lexique 300+ mots par thème</li>
+        <li>Émotions M/F complètes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div style="padding: 0 20px 60px; background: var(--encre);">
+  <div class="divider reveal">
+    <div class="divider-line"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-star"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════ EXTRAIT ══════════════════════ -->
+<section class="extract-section">
+  <p class="section-label reveal">Aperçu du contenu</p>
+  <h2 class="section-title reveal">Ce que tu vas<br><em>apprendre concrètement</em></h2>
+  <p class="section-intro reveal">Chaque table du guide est organisée ainsi — phonétique claire, masculin ET féminin systématiquement, note de contexte.</p>
+
+  <table class="extract-table reveal">
+    <thead>
+      <tr>
+        <th>Français</th>
+        <th>Phonétique Darija</th>
+        <th>(M) Masculin</th>
+        <th>(F) Féminin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-fr">Tu vas bien ?</td>
+        <td class="td-ph">la-bas ntaa / nti ?</td>
+        <td class="td-mf">la-bas ntaa ?</td>
+        <td class="td-mf">la-bas nti ?</td>
+      </tr>
+      <tr>
+        <td class="td-fr">Bienvenue</td>
+        <td class="td-ph">mra-7-ba bi-k / bi-ki</td>
+        <td class="td-mf">mra-7-ba bi-k</td>
+        <td class="td-mf">mra-7-ba bi-ki</td>
+      </tr>
+      <tr>
+        <td class="td-fr">Heureux / Heureuse</td>
+        <td class="td-ph">fer-7-aan / fer-7-aa-na</td>
+        <td class="td-mf">fer-7-aan</td>
+        <td class="td-mf">fer-7-aa-na</td>
+      </tr>
+      <tr>
+        <td class="td-fr">Il/Elle a mangé</td>
+        <td class="td-ph">k-laa / k-lat</td>
+        <td class="td-mf">k-laa</td>
+        <td class="td-mf">k-lat</td>
+      </tr>
+      <tr>
+        <td class="td-fr">Prends ! (ordre)</td>
+        <td class="td-ph">Khood ! / Khdi !</td>
+        <td class="td-mf">Khood !</td>
+        <td class="td-mf">Khdi !</td>
+      </tr>
+      <tr>
+        <td class="td-fr">Merci (à quelqu'un)</td>
+        <td class="td-ph">bara-ka fi-k / fi-ki</td>
+        <td class="td-mf">bara-ka fi-k</td>
+        <td class="td-mf">bara-ka fi-ki</td>
+      </tr>
+      <tr>
+        <td class="td-fr">Je suis marié(e)</td>
+        <td class="td-ph">met-j-wej / met-j-we-ja</td>
+        <td class="td-mf">met-j-wej</td>
+        <td class="td-mf">met-j-we-ja</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+
+<!-- ══════════════════════ PRICING ══════════════════════ -->
+<section class="pricing-section">
+  <p class="section-label reveal">Offre unique</p>
+  <h2 class="section-title reveal">Ton guide complet,<br><em>disponible maintenant</em></h2>
+
+  <div class="price-box reveal">
+    <div class="corner-tl"></div>
+    <div class="corner-tr"></div>
+    <div class="corner-bl"></div>
+    <div class="corner-br"></div>
+    <div class="price-inner">
+      <p class="price-label">Guide Darija Complet</p>
+      <h3 class="price-title">PDF Téléchargeable<br>Livraison Instantanée</h3>
+      <ul class="price-includes">
+        <li>18 chapitres — 3 niveaux progressifs</li>
+        <li>Phonétique 100% en lettres françaises</li>
+        <li>Toutes les formes Masculin &amp; Féminin</li>
+        <li>300+ mots et expressions</li>
+        <li>30 verbes conjugués aux 3 temps</li>
+        <li>L'impératif M/F — 16 verbes</li>
+        <li>12 proverbes marocains expliqués</li>
+        <li>Dialogues authentiques (restaurant, souk, santé…)</li>
+        <li>Argot &amp; expressions des jeunes</li>
+        <li>Lexique thématique de référence</li>
+      </ul>
+      <div class="price-amount"><sup>€</sup>9<sup style="font-size:32px">,90</sup></div>
+      <p class="price-note">Paiement unique &nbsp;·&nbsp; Accès à vie &nbsp;·&nbsp; Paiement 100% sécurisé</p>
+      <a href="https://buy.stripe.com/cNicN7gN69UG6hK4jmgMw02" class="cta-btn" style="width:100%; text-align:center; display:block;">
+        Je télécharge maintenant
+      </a>
+    </div>
+  </div>
+  <p class="cta-subtext reveal" style="margin-top:24px;">Stripe &nbsp;·&nbsp; Visa &nbsp;·&nbsp; Mastercard &nbsp;·&nbsp; Apple Pay</p>
+</section>
+
+<!-- ══════════════════════ GUARANTEE ══════════════════════ -->
+<div class="guarantee-band">
+  <div class="guarantee-inner reveal">
+    <div class="guarantee-icon">🔐</div>
+    <div>
+      <h3 class="guarantee-title">Paiement 100% sécurisé via Stripe</h3>
+      <p class="guarantee-text">Ton paiement est traité par Stripe, la plateforme de paiement la plus sécurisée au monde. Le PDF t'est livré instantanément dans ta boîte mail après l'achat.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ FAQ ══════════════════════ -->
+<section class="faq-section" style="margin: 0 auto; padding: 80px 20px;">
+  <p class="section-label reveal">Questions fréquentes</p>
+  <h2 class="section-title reveal" style="margin-bottom:40px;">FAQ</h2>
+
+  <div class="faq-item reveal">
+    <div class="faq-q">Quel est le format du guide ?</div>
+    <div class="faq-a">Le guide est un PDF téléchargeable, lisible sur téléphone, tablette ou ordinateur. Il est livré instantanément par email après le paiement.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-q">Je n'ai aucun niveau, c'est fait pour moi ?</div>
+    <div class="faq-a">Absolument. Le guide commence au tout débutant/e : sons, prononciation, premiers mots. La phonétique est entièrement en lettres françaises, pas besoin de connaître l'alphabet arabe.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-q">Pourquoi les formes masculin ET féminin sont importantes ?</div>
+    <div class="faq-a">En Darija, une femme ne se conjugue pas de la même façon qu'un homme. La plupart des guides ne donnent que le masculin — c'est insuffisant. Ce guide est le premier à systématiser les deux formes dans chaque tableau.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-q">Est-ce la Darija de Casablanca, Marrakech ou Fès ?</div>
+    <div class="faq-a">Le guide enseigne la Darija standard, celle qui est la plus largement comprise dans tout le Maroc. Des variations régionales sont mentionnées en notes quand elles sont importantes.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-q">Le paiement est-il sécurisé ?</div>
+    <div class="faq-a">Oui. Le paiement est géré par Stripe, la référence mondiale du paiement en ligne. Tes données bancaires ne nous parviennent jamais directement.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER CTA ══════════════════════ -->
+<div class="footer-cta">
+  <p class="footer-arabic reveal">بالتوفيق</p>
+  <h2 class="footer-cta-title reveal">Prêt/e à parler Darija<br>comme un/e vrai/e Marocain/e ?</h2>
+  <p class="footer-sub reveal">300+ mots · 18 chapitres · Masculin &amp; Féminin · Livraison instantanée</p>
+  <p class="footer-price-inline reveal">9,90 €</p>
+  <a href="https://buy.stripe.com/cNicN7gN69UG6hK4jmgMw02" class="cta-btn reveal">
+    Je télécharge le Guide Darija
+  </a>
+</div>
+
+<footer>
+  &copy; 2025 Guide Darija &nbsp;·&nbsp; PDF Téléchargeable &nbsp;·&nbsp; Paiement sécurisé Stripe
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, (i % 4) * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
